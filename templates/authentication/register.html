@@ -1,6 +1,7 @@
 
 
 {% extends 'base_auth.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -42,32 +43,43 @@
                     <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
       
                       <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Register for a free account</p>
-      
-                      <form action="" method="post" class="mx-1 mx-md-4">
-      
+                      
+                      <form action="{% url 'register' %}" method="post" class="mx-1 mx-md-4">
+                        {% csrf_token %}
+                        {% include 'partials/_messages.html'%}
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="text" id="form3Example1c" class="form-control" />
+                            <input type="text" name="username" id="usernameField" placeholder="username" value="{{fieldValues.username}}" class="form-control" />
                             <label class="form-label" for="form3Example1c">Your Name</label>
                           </div>
                         </div>
-      
+                        <div class="invalid_feedback invalid-feedback" style="display: none" >
+
+                        </div>
+                        <p class="text-sm text-success usernameSuccessOutput"></p>
+                        
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="email" id="form3Example3c" class="form-control" />
+                            <input type="email" name="email" id="emailField" placeholder="email" value="{{fieldValues.email}}" class="form-control" />
                             <label class="form-label" for="form3Example3c">Your Email</label>
                           </div>
+                        </div>
+                        <div class="emailfeedBackArea invalid-feedback" style="display: none" >
+
                         </div>
       
                         <div class="d-flex flex-row align-items-center mb-4">
                           <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                           <div class="form-outline flex-fill mb-0">
-                            <input type="password" id="form3Example4c" class="form-control" />
+                            <input type="password" name="password" id="passwordField" placeholder="password" class="form-control" />
                             <label class="form-label" for="form3Example4c">Password</label>
                           </div>
                         </div>
+                        <!-- <div class="form-outline flex-fill mb-0"> -->
+                          <small class="float-right py-3 showPasswordToggle">SHOW</small>
+                        <!-- </div> -->
       
       
                         <div class="form-check d-flex justify-content-center mb-5">
@@ -78,7 +90,7 @@
                         </div>
       
                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                          <button type="button" class="btn btn-primary btn-lg">Register</button>
+                          <button type="submit" class="btn btn-primary btn-lg submit-btn">Register</button>
                         </div>
       
                       </form>
@@ -97,5 +109,5 @@
           </div>
         </div>
       </section>
-
+<script src=" {% static 'js/register.js' %}"></script>
 {% endblock %}

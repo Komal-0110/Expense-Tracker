@@ -17,6 +17,7 @@ from pathlib import Path
 # load_dotenv()
 # env = environ.Env()
 # environ.Env.read_env()
+from django.contrib import messages  
 import dotenv
 dotenv.load_dotenv()
 
@@ -139,3 +140,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
+
+MESSAGE_TAGS = {
+    messages.ERROR : 'danger'
+}
