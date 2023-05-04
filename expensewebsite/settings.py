@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'expenses',
-    'authentication'
+    'authentication',
+    'userpreferences'
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,22 @@ django_heroku.settings(locals())
 MESSAGE_TAGS = {
     messages.ERROR : 'danger'
 }
+
+#email stuff
+
+# EMIAL_HOST = os.environ.get('EMIAL_HOST')
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+# EMAIL_USE_TLS = True
+# DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_SSL = False
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'kvaswani3456@gmail.com'
+EMAIL_HOST_PASSWORD = 'dusaxzvdghjpxrzu'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False

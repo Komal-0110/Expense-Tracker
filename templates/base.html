@@ -24,7 +24,10 @@
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   <ul class="navbar-nav">
     <li class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Sign out</a>
+      <form action="{% url 'logout' %}" method="POST">
+        {% csrf_token %}
+        <input class="text text-capitalize" type="submit" value="Sign out">
+      </form>
     </li>
   </ul>
 </nav>
