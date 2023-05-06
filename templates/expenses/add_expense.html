@@ -1,15 +1,69 @@
 {% extends 'base.html' %}
-
-
+{% block content %}
+<style>
+    .breadcrumb
+    {
+      font-family: 'Lato', sans-serif;
+      color:grey;
+      font-size: 35px;
+      margin: 0px;
+    }
+    </style>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item"><a href="{% url 'expenses'%}">Expenses</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+        <!-- <ul class="my-row"> -->
+            <!-- <div class="w3-bar w3-border w3-gray w3-xlarge"> -->
+                <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add Expenses</li>
+            <!-- </div> -->
+        <!-- </ul> -->
     </ol>
   </nav>
   
+  
+<div class="card">
+    <div class="card-body">
+        <form action="{% url 'add-expenses' %}" method="post">
+            {% include 'partials/_messages.html' %}
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="">Amount</label><br>
+                <input type="number" name="amount" id="" class="form-control form-control-sm" value="{{values.amount}}"><br>
+            </div><br>
+            <div class="form-group">
+                <label for="">Description</label><br>
+                <input type="text" name="description" id="" class="form-control form-control-sm"  value="{{values.description}}"><br>
+            </div><br>
+            <div class="form-group">
+                <label for="">Category</label><br>
+                <select class="form-control" name="category">
+                    {% for category in categories%}
+                    <option name="category" value="{{category.name}}">
+                        {{category.name}}</option>
+        
+                    {% endfor %}
+                  </select><br>
+            </div><br>
+            <div class="form-group">
+                <label for="">Date of Expense</label><br>
+                <input
+                  type="date"
+                  class="form-control form-control-sm"
+                  name="expense_date"
+                /> <br>
+            </div><br>
+            <input
+          type="submit"
+          value="Submit"
+          class="btn btn-primary btn-primary-sm"
+        /> <br>
+        </form>
+    </div>
+</div>
 
-{% block content %}
 
-    <h1> Hello Expenses </h1>
+
+
+
 {% endblock content %}
